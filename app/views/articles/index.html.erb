@@ -1,0 +1,11 @@
+<h1>This is articels/index </h1>
+<ul>
+<% @articles.each do |article| %>
+	<li>
+		<div> 
+			<h3><%= article.title %></h3>
+			<%= article.body %> - <%= link_to "Eliminar", article, method: :delete %>
+		</div>
+	</li>
+<% end %>
+</ul>

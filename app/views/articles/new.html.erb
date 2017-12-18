@@ -1,0 +1,21 @@
+<h1>New article</h1>
+<%= form_for(@article) do |f| %>
+	<div>
+		<ul>
+			<% @article.errors.full_messages.each do |message| %>
+				<li> 
+					<%= message %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div>
+		<%= f.text_field :title, placeholder: "Tìtulo" %>
+	</div>
+	<div>
+		<%= f.text_area :body, placeholder: "Escribe aquí el artículo" %>
+	</div>
+	<div>
+		<%= f.submit "Guardar", class:"btn" %>
+	</div>
+<%end%>

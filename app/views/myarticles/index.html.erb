@@ -1,0 +1,8 @@
+<h1>This is articels/index </h1>
+<ul>
+<% @articles.each do |article| %>
+	<li> 
+		<%= article.body %> - <%= link_to "Eliminar", article, method: :delete %>
+	</li>
+<% end %>
+</ul>
