@@ -5175,3 +5175,583 @@ Processing by MyarticlesController#destroy as JSON
 Completed 200 OK in 26ms (Views: 15.6ms | ActiveRecord: 3.8ms)
 
 
+  [1m[35m (0.5ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (460.7ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (263.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (33.0ms)[0m  [1m[34mSELECT GET_LOCK(3894001433531508390, 0)[0m
+  [1m[35m (24.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateArticles (20171107041948)
+  [1m[35m (161.2ms)[0m  [1m[35mCREATE TABLE `articles` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `body` text, `visits_count` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (27.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171107041948')[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateUsers (20171113033345)
+  [1m[35m (153.6ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `name` varchar(255), `permission_level` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (175.6ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (156.5ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113033345')[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserIdToArticles (20171113040056)
+  [1m[35m (257.8ms)[0m  [1m[35mALTER TABLE `articles` ADD `user_id` bigint[0m
+  [1m[35m (267.2ms)[0m  [1m[35mCREATE  INDEX `index_articles_on_user_id`  ON `articles` (`user_id`) [0m
+  [1m[35m (207.6ms)[0m  [1m[35mALTER TABLE `articles` ADD CONSTRAINT `fk_rails_3d31dad1cc`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171113040056')[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2017-12-19 03:57:08', '2017-12-19 03:57:08')[0m
+  [1m[35m (40.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK(3894001433531508390)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 127.0.0.1 at 2017-12-18 22:02:17 -0600
+  [1m[35m (0.5ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by WellcomeController#index as HTML
+  Rendering wellcome/index.html.erb within layouts/application
+  Rendered wellcome/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 596ms (Views: 539.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-12-18 22:05:39 -0600
+Processing by Devise::SessionsController#new as HTML
+  Rendering /Users/dimegan/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /Users/dimegan/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (2.1ms)
+  Rendered /Users/dimegan/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (209.4ms)
+Completed 200 OK in 341ms (Views: 243.9ms | ActiveRecord: 44.3ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-12-18 22:05:44 -0600
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering /Users/dimegan/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/devise-4.3.0/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /Users/dimegan/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (2.0ms)
+  Rendered /Users/dimegan/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/devise-4.3.0/app/views/devise/registrations/new.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 67ms (Views: 65.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-12-18 22:05:55 -0600
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fZ4AHhYl8LY6K0nACbau9ZkmyVW4i2Gtey8DkROmgLN7GeqdICwyS2H8LsVEPDa62FsdZLQkXOg3bX94Qj6I4w==", "user"=>{"email"=>"diego@mail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (53.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'diego@mail.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('diego@mail.com', '$2a$11$CXe4mJ97zkK5Hh0dyiJsY.cC1isauSuh4vhWBhNdx..p7bE8bGUr.', '2017-12-19 04:05:55', '2017-12-19 04:05:55')[0m
+  [1m[35m (23.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (121.8ms)[0m  [1m[33mUPDATE `users` SET `sign_in_count` = 1, `current_sign_in_at` = '2017-12-19 04:05:55', `last_sign_in_at` = '2017-12-19 04:05:55', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1' WHERE `users`.`id` = 1[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://0.0.0.0:3000/
+Completed 302 Found in 564ms (ActiveRecord: 201.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-12-18 22:05:56 -0600
+Processing by WellcomeController#index as HTML
+  Rendering wellcome/index.html.erb within layouts/application
+  Rendered wellcome/index.html.erb within layouts/application (1.1ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 58ms (Views: 54.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/misarticulos/create" for 127.0.0.1 at 2017-12-18 22:07:05 -0600
+Processing by MyarticlesController#create as JSON
+  Parameters: {"title"=>"Las mil y una noches", "body"=>"Cuento de la literatura clasica", "myarticle"=>{"title"=>"Las mil y una noches", "body"=>"Cuento de la literatura clasica"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (21.8ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `user_id`) VALUES ('Las mil y una noches', 'Cuento de la literatura clasica', '2017-12-19 04:07:05', '2017-12-19 04:07:05', 1)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering myarticles/create.json.jbuilder
+  Rendered myarticles/create.json.jbuilder (23.0ms)
+Completed 200 OK in 207ms (Views: 38.2ms | ActiveRecord: 25.8ms)
+
+
+Started GET "/misarticulos/" for 127.0.0.1 at 2017-12-18 22:07:13 -0600
+Processing by MyarticlesController#index as JSON
+  Parameters: {"myarticle"=>{}}
+  Rendering myarticles/index.json.jbuilder
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  Rendered myarticles/index.json.jbuilder (2.3ms)
+Completed 200 OK in 20ms (Views: 15.6ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/misarticulos/create" for 127.0.0.1 at 2017-12-18 22:07:40 -0600
+Processing by MyarticlesController#create as JSON
+  Parameters: {"title"=>"Cuentos para niñas rebeldes", "body"=>"Cuento de la literatura clasica", "myarticle"=>{"title"=>"Cuentos para niñas rebeldes", "body"=>"Cuento de la literatura clasica"}}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `user_id`) VALUES ('Cuentos para niñas rebeldes', 'Cuento de la literatura clasica', '2017-12-19 04:07:40', '2017-12-19 04:07:40', 1)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering myarticles/create.json.jbuilder
+  Rendered myarticles/create.json.jbuilder (0.5ms)
+Completed 200 OK in 33ms (Views: 16.2ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/misarticulos/" for 127.0.0.1 at 2017-12-18 22:07:46 -0600
+Processing by MyarticlesController#index as JSON
+  Parameters: {"myarticle"=>{}}
+  Rendering myarticles/index.json.jbuilder
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  Rendered myarticles/index.json.jbuilder (2.4ms)
+Completed 200 OK in 19ms (Views: 16.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/misarticulos/show/2" for 127.0.0.1 at 2017-12-18 22:07:55 -0600
+Processing by MyarticlesController#show as JSON
+  Parameters: {"id"=>"2", "myarticle"=>{}}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  `articles`.* FROM `articles` WHERE `articles`.`id` = 2 LIMIT 1[0m
+  Rendering myarticles/show.json.jbuilder
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered myarticles/show.json.jbuilder (3.2ms)
+Completed 200 OK in 24ms (Views: 16.8ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/misarticulos/destroy/2" for 127.0.0.1 at 2017-12-18 22:08:09 -0600
+Processing by MyarticlesController#destroy as JSON
+  Parameters: {"id"=>"2", "myarticle"=>{}}
+  [1m[36mArticle Load (0.7ms)[0m  [1m[34mSELECT  `articles`.* FROM `articles` WHERE `articles`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (522.3ms)[0m  [1m[31mDELETE FROM `articles` WHERE `articles`.`id` = 2[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering myarticles/destroy.json.jbuilder
+  Rendered myarticles/destroy.json.jbuilder (0.4ms)
+Completed 200 OK in 580ms (Views: 14.9ms | ActiveRecord: 525.4ms)
+
+
+Started GET "/misarticulos/" for 127.0.0.1 at 2017-12-18 22:08:15 -0600
+Processing by MyarticlesController#index as JSON
+  Parameters: {"myarticle"=>{}}
+  Rendering myarticles/index.json.jbuilder
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  Rendered myarticles/index.json.jbuilder (2.4ms)
+Completed 200 OK in 30ms (Views: 25.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/misarticulos/create" for 127.0.0.1 at 2017-12-18 22:08:24 -0600
+Processing by MyarticlesController#create as JSON
+  Parameters: {"title"=>"Cuentos para niñas rebeldes", "body"=>"Cuento de la literatura clasica", "myarticle"=>{"title"=>"Cuentos para niñas rebeldes", "body"=>"Cuento de la literatura clasica"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `user_id`) VALUES ('Cuentos para niñas rebeldes', 'Cuento de la literatura clasica', '2017-12-19 04:08:24', '2017-12-19 04:08:24', 1)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering myarticles/create.json.jbuilder
+  Rendered myarticles/create.json.jbuilder (0.6ms)
+Completed 200 OK in 26ms (Views: 15.1ms | ActiveRecord: 3.0ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK(3894001433531508390, 0)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateCompanies (20171219042040)
+  [1m[35m (118.5ms)[0m  [1m[35mCREATE TABLE `companies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` text, `address` text, `creation_date` date, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20171219042040')[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK(3894001433531508390)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/misarticulos/show/18" for 127.0.0.1 at 2018-01-09 21:47:20 -0600
+  [1m[35m (101.6ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (24.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by MyarticlesController#show as JSON
+  Parameters: {"id"=>"18", "myarticle"=>{}}
+  [1m[36mArticle Load (43.8ms)[0m  [1m[34mSELECT  `articles`.* FROM `articles` WHERE `articles`.`id` = 18 LIMIT 1[0m
+Completed 404 Not Found in 154ms (ActiveRecord: 113.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=18):
+  
+app/controllers/myarticles_controller.rb:27:in `show'
+Started GET "/misarticulos/" for 127.0.0.1 at 2018-01-09 21:48:23 -0600
+Processing by MyarticlesController#index as JSON
+  Parameters: {"myarticle"=>{}}
+  Rendering myarticles/index.json.jbuilder
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  Rendered myarticles/index.json.jbuilder (77.9ms)
+Completed 200 OK in 122ms (Views: 96.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/misarticulos/show/18" for 127.0.0.1 at 2018-01-09 21:49:10 -0600
+Processing by MyarticlesController#show as JSON
+  Parameters: {"id"=>"18", "myarticle"=>{}}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  `articles`.* FROM `articles` WHERE `articles`.`id` = 18 LIMIT 1[0m
+Completed 404 Not Found in 2ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=18):
+  
+app/controllers/myarticles_controller.rb:27:in `show'
+Started GET "/articles/" for 127.0.0.1 at 2018-01-09 21:52:16 -0600
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  Rendered articles/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 515ms (Views: 510.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/misarticulos/testservice" for 127.0.0.1 at 2018-01-09 21:52:38 -0600
+Processing by MyarticlesController#testservice as JSON
+  Parameters: {"usuario"=>"Diego", "apellidos"=>{"paterno"=>"Mendoza", "materno"=>"Garcia"}, "roles"=>["admin", "buyer", "user"], "myarticle"=>{"usuario"=>"Diego", "apellidos"=>{"paterno"=>"Mendoza", "materno"=>"Garcia"}, "roles"=>["admin", "buyer", "user"]}}
+  Rendering myarticles/testservice.json.jbuilder
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  Rendered myarticles/testservice.json.jbuilder (2.2ms)
+Completed 200 OK in 31ms (Views: 16.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/misarticulos/create" for 127.0.0.1 at 2018-01-09 21:53:06 -0600
+Processing by MyarticlesController#create as JSON
+  Parameters: {"title"=>"Vampirina", "body"=>"Cuento de una niña vampiro", "myarticle"=>{"title"=>"Vampirina", "body"=>"Cuento de una niña vampiro"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (50.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (74.1ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `user_id`) VALUES ('Vampirina', 'Cuento de una niña vampiro', '2018-01-10 03:53:06', '2018-01-10 03:53:06', 1)[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCOMMIT[0m
+  Rendering myarticles/create.json.jbuilder
+  Rendered myarticles/create.json.jbuilder (0.6ms)
+Completed 200 OK in 395ms (Views: 20.0ms | ActiveRecord: 244.5ms)
+
+
+Started GET "/articles/" for 127.0.0.1 at 2018-01-09 21:53:17 -0600
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  Rendered articles/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 102ms (Views: 98.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/misarticulos/show/4" for 127.0.0.1 at 2018-01-09 21:54:33 -0600
+Processing by MyarticlesController#show as JSON
+  Parameters: {"id"=>"4", "myarticle"=>{}}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  `articles`.* FROM `articles` WHERE `articles`.`id` = 4 LIMIT 1[0m
+  Rendering myarticles/show.json.jbuilder
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered myarticles/show.json.jbuilder (4.7ms)
+Completed 200 OK in 51ms (Views: 18.4ms | ActiveRecord: 1.1ms)
+
+
+  [1m[35m (101.8ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT GET_LOCK(3894001433531508390, 0)[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateSchools (20180111032717)
+  [1m[35m (320.4ms)[0m  [1m[35mCREATE TABLE `schools` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `address` varchar(255), `phone` varchar(255), `creation` datetime, `is_active` tinyint(1), `students_count` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (8.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180111032717')[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (28.3ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT RELEASE_LOCK(3894001433531508390)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started POST "/schools/create" for 127.0.0.1 at 2018-01-10 21:58:04 -0600
+  [1m[35m (0.6ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by MyarticlesController#create as JSON
+  Parameters: {"text/plain"=>[""]}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  Rendering myarticles/create.json.jbuilder
+  Rendered myarticles/create.json.jbuilder (26.4ms)
+Completed 200 OK in 365ms (Views: 68.9ms | ActiveRecord: 25.1ms)
+
+
+Started POST "/schools/create" for 127.0.0.1 at 2018-01-10 21:59:45 -0600
+  [1m[35m (0.5ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SchoolsController#create as JSON
+  Parameters: {"text/plain"=>[""]}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (25.7ms)[0m  [1m[32mINSERT INTO `schools` (`name`, `address`, `phone`, `creation`, `is_active`, `created_at`, `updated_at`) VALUES ('Eduardo Zarza', 'Col. la merced #25', '5523220385', '2018-01-11 03:59:45', 1, '2018-01-11 03:59:45', '2018-01-11 03:59:45')[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/create.json.jbuilder
+  Rendered schools/create.json.jbuilder (20.6ms)
+Completed 500 Internal Server Error in 141ms (ActiveRecord: 38.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: json.school do
+    2:   json.name @article.name
+    3:   json.phone @article.phone
+    4: end
+  
+app/views/schools/create.json.jbuilder:2:in `block in _app_views_schools_create_json_jbuilder__778104702914434373_70164238094980'
+app/views/schools/create.json.jbuilder:1:in `_app_views_schools_create_json_jbuilder__778104702914434373_70164238094980'
+Started POST "/schools/create" for 127.0.0.1 at 2018-01-10 22:01:44 -0600
+  [1m[35m (0.5ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SchoolsController#create as JSON
+  Parameters: {"text/plain"=>[""]}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schools` (`name`, `address`, `phone`, `creation`, `is_active`, `created_at`, `updated_at`) VALUES ('Eduardo Zarza', 'Col. la merced #25', '5523220385', '2018-01-11 04:01:44', 1, '2018-01-11 04:01:44', '2018-01-11 04:01:44')[0m
+  [1m[35m (45.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/create.json.jbuilder
+  Rendered schools/create.json.jbuilder (35.5ms)
+Completed 200 OK in 132ms (Views: 52.9ms | ActiveRecord: 48.2ms)
+
+
+Started POST "/schools/create" for 127.0.0.1 at 2018-01-10 22:04:52 -0600
+Processing by SchoolsController#create as JSON
+  Parameters: {"text/plain"=>[""]}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schools` (`name`, `address`, `phone`, `creation`, `is_active`, `created_at`, `updated_at`) VALUES ('Eduardo Zarza', 'Col. la merced #25', '5523220385', '2018-01-11 04:04:52', 1, '2018-01-11 04:04:52', '2018-01-11 04:04:52')[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/create.json.jbuilder
+  Rendered schools/create.json.jbuilder (0.6ms)
+Completed 200 OK in 31ms (Views: 19.3ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 21:35:18 -0600
+  [1m[35m (101.9ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (47.9ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (146.4ms)
+Completed 200 OK in 229ms (Views: 121.7ms | ActiveRecord: 74.1ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 21:36:03 -0600
+  [1m[35m (0.5ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (50.1ms)
+Completed 500 Internal Server Error in 76ms (ActiveRecord: 2.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `_id' for #<School:0x007fa4d4d9b018>):
+    1: json.array! @schools do |school|
+    2:   json.(school, :_id, :name, :address, :phone, :creation, :is_active, :students_count)
+    3: end
+  
+app/views/schools/index.json.jbuilder:2:in `block in _app_views_schools_index_json_jbuilder__3853483807983801034_70172992164860'
+app/views/schools/index.json.jbuilder:1:in `_app_views_schools_index_json_jbuilder__3853483807983801034_70172992164860'
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 21:36:38 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.7ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (24.3ms)
+Completed 200 OK in 40ms (Views: 36.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 21:37:39 -0600
+  [1m[35m (0.5ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (19.5ms)
+Completed 200 OK in 50ms (Views: 32.8ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/schools/" for 127.0.0.1 at 2018-01-11 21:38:29 -0600
+Processing by SchoolsController#create as JSON
+  Parameters: {"text/plain"=>[""]}
+  [1m[35m (40.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (65.1ms)[0m  [1m[32mINSERT INTO `schools` (`name`, `address`, `phone`, `creation`, `is_active`, `created_at`, `updated_at`) VALUES ('Eduardo Zarza', 'Col. la merced #25', '5523220385', '2018-01-12 03:38:29', 1, '2018-01-12 03:38:29', '2018-01-12 03:38:29')[0m
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/create.json.jbuilder
+  Rendered schools/create.json.jbuilder (0.6ms)
+Completed 200 OK in 209ms (Views: 15.3ms | ActiveRecord: 115.4ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 21:38:37 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.5ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (3.2ms)
+Completed 200 OK in 21ms (Views: 17.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/schools/" for 127.0.0.1 at 2018-01-11 21:48:04 -0600
+Processing by SchoolsController#create as JSON
+  Parameters: {"name"=>"Maria Teresa", "address"=>"Calle Isidro Fabela #300", "phone"=>"55232986", "is_active"=>"true", "students_count"=>35, "school"=>{"name"=>"Maria Teresa", "address"=>"Calle Isidro Fabela #300", "phone"=>"55232986", "is_active"=>"true", "students_count"=>35}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schools` (`name`, `address`, `phone`, `creation`, `is_active`, `students_count`, `created_at`, `updated_at`) VALUES ('Maria Teresa', 'Calle Isidro Fabela #300', '55232986', '2018-01-12 03:48:04', 1, 35, '2018-01-12 03:48:04', '2018-01-12 03:48:04')[0m
+  [1m[35m (69.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/create.json.jbuilder
+  Rendered schools/create.json.jbuilder (0.7ms)
+Completed 200 OK in 103ms (Views: 14.6ms | ActiveRecord: 85.6ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 21:48:33 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (4.2ms)
+Completed 200 OK in 28ms (Views: 22.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/schools/" for 127.0.0.1 at 2018-01-11 21:51:58 -0600
+Processing by SchoolsController#create as JSON
+  Parameters: {"name"=>"Maria Teresa", "address"=>"Calle Isidro Fabela #300", "phone"=>"55232986", "is_active"=>"true", "students_count"=>35, "school"=>{"name"=>"Maria Teresa", "address"=>"Calle Isidro Fabela #300", "phone"=>"55232986", "is_active"=>"true", "students_count"=>35}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schools` (`name`, `address`, `phone`, `creation`, `is_active`, `students_count`, `created_at`, `updated_at`) VALUES ('Maria Teresa', 'Calle Isidro Fabela #300', '55232986', '2018-01-12 03:51:58', 1, 35, '2018-01-12 03:51:58', '2018-01-12 03:51:58')[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/create.json.jbuilder
+  Rendered schools/create.json.jbuilder (0.8ms)
+Completed 200 OK in 24ms (Views: 15.7ms | ActiveRecord: 3.1ms)
+
+
+Started POST "/schools/" for 127.0.0.1 at 2018-01-11 21:52:20 -0600
+Processing by SchoolsController#create as JSON
+  Parameters: {"name"=>"Maria Teresa", "address"=>"Calle Isidro Fabela #300", "phone"=>"55232986", "is_active"=>"true", "students_count"=>35, "school"=>{"name"=>"Maria Teresa", "address"=>"Calle Isidro Fabela #300", "phone"=>"55232986", "is_active"=>"true", "students_count"=>35}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schools` (`name`, `address`, `phone`, `creation`, `is_active`, `students_count`, `created_at`, `updated_at`) VALUES ('Maria Teresa', 'Calle Isidro Fabela #300', '55232986', '2018-01-12 03:52:20', 1, 35, '2018-01-12 03:52:20', '2018-01-12 03:52:20')[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/create.json.jbuilder
+  Rendered schools/create.json.jbuilder (1.0ms)
+Completed 200 OK in 31ms (Views: 21.0ms | ActiveRecord: 3.5ms)
+
+
+Started DELETE "/school/2" for 127.0.0.1 at 2018-01-11 21:59:02 -0600
+Processing by SchoolsController#destroy as JSON
+  Parameters: {"id"=>"2"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (5.1.4) lib/action_controller/metal/request_forgery_protection.rb:195:in `handle_unverified_request'
+actionpack (5.1.4) lib/action_controller/metal/request_forgery_protection.rb:227:in `handle_unverified_request'
+devise (4.3.0) lib/devise/controllers/helpers.rb:253:in `handle_unverified_request'
+actionpack (5.1.4) lib/action_controller/metal/request_forgery_protection.rb:222:in `verify_authenticity_token'
+activesupport (5.1.4) lib/active_support/callbacks.rb:413:in `block in make_lambda'
+activesupport (5.1.4) lib/active_support/callbacks.rb:178:in `block (2 levels) in halting_and_conditional'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.1.4) lib/active_support/callbacks.rb:179:in `block in halting_and_conditional'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `block in invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `each'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:130:in `run_callbacks'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.4) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.10.0) lib/puma/configuration.rb:225:in `call'
+puma (3.10.0) lib/puma/server.rb:605:in `handle_request'
+puma (3.10.0) lib/puma/server.rb:437:in `process_client'
+puma (3.10.0) lib/puma/server.rb:301:in `block in run'
+puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started DELETE "/school/2" for 127.0.0.1 at 2018-01-11 21:59:33 -0600
+Processing by SchoolsController#destroy as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mSchool Load (41.0ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (35.9ms)[0m  [1m[31mDELETE FROM `schools` WHERE `schools`.`id` = 2[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/destroy.json.jbuilder
+  Rendered schools/destroy.json.jbuilder (0.5ms)
+Completed 200 OK in 131ms (Views: 13.8ms | ActiveRecord: 80.0ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 21:59:44 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (3.3ms)
+Completed 200 OK in 20ms (Views: 16.4ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/school/3" for 127.0.0.1 at 2018-01-11 22:01:12 -0600
+Processing by SchoolsController#destroy as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mSchool Load (0.5ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (17.5ms)[0m  [1m[31mDELETE FROM `schools` WHERE `schools`.`id` = 3[0m
+  [1m[35m (40.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/destroy.json.jbuilder
+  Rendered schools/destroy.json.jbuilder (0.5ms)
+Completed 200 OK in 78ms (Views: 13.7ms | ActiveRecord: 58.5ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 22:01:20 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (2.8ms)
+Completed 200 OK in 25ms (Views: 20.3ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/school/4" for 127.0.0.1 at 2018-01-11 22:01:51 -0600
+  [1m[35m (0.9ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SchoolsController#destroy as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 4 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM `schools` WHERE `schools`.`id` = 4[0m
+  [1m[35m (39.9ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/destroy.json.jbuilder
+  Rendered schools/destroy.json.jbuilder (3.0ms)
+Completed 200 OK in 154ms (Views: 25.6ms | ActiveRecord: 50.4ms)
+
+
+Started GET "/schools/" for 127.0.0.1 at 2018-01-11 22:01:55 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (3.7ms)
+Completed 200 OK in 29ms (Views: 25.1ms | ActiveRecord: 0.4ms)
+
+

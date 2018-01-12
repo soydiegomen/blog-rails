@@ -11,11 +11,11 @@ default: &default
 
 development:
   adapter: mysql2
-  username: root
-  password: root
+  username: admin
+  password: admin
   host: 127.0.0.1
-  port: 8889
-  database: blog_facilito
+  port: 3306
+  database: blog_rails
   pool: 5
   timeout: 500
 
