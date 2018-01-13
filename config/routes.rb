@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post 'schools/', to:'schools#create', defaults: { format: "json" } 
   get 'schools/', to:'schools#index', defaults: { format: "json" } 
   delete 'school/:id', to:'schools#destroy', defaults: { format: "json" } 
+  get 'school/:id', to:'schools#show', defaults: { format: "json" } 
+  put 'school/:id', to:'schools#update', defaults: { format: "json" } 
   #TODO: Update Shcool
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
