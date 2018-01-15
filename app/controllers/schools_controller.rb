@@ -4,7 +4,6 @@ class SchoolsController < ApplicationController
 
 	#GET /schools/
 	def index
-		puts form_authenticity_token
 		@schools = School.all
 	end
 
