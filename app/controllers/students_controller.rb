@@ -41,4 +41,15 @@ class StudentsController < ApplicationController
 	      puts @student.errors.full_messages
 	    end
 	end
+
+	#Custom querys
+	#GET /school/:id
+	def filterBySchool
+		@school = School.find(params[:company])
+		@students = Array.new
+		#Validar que haya estudiantes
+		if !@school.students.nil?
+			@students = @school.students;
+		end
+	end
 end

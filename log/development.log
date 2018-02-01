@@ -6316,3 +6316,191 @@ Processing by StudentsController#index as JSON
 Completed 200 OK in 22ms (Views: 16.4ms | ActiveRecord: 0.4ms)
 
 
+Started GET "/students/" for 127.0.0.1 at 2018-01-21 21:27:47 -0600
+  [1m[35m (124.1ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by StudentsController#index as JSON
+  Rendering students/index.json.jbuilder
+  [1m[36mStudent Load (61.9ms)[0m  [1m[34mSELECT `students`.* FROM `students`[0m
+  Rendered students/index.json.jbuilder (136.4ms)
+Completed 200 OK in 288ms (Views: 121.0ms | ActiveRecord: 73.8ms)
+
+
+Started GET "/student/2" for 127.0.0.1 at 2018-01-21 21:27:56 -0600
+Processing by StudentsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mStudent Load (43.1ms)[0m  [1m[34mSELECT  `students`.* FROM `students` WHERE `students`.`id` = 2 LIMIT 1[0m
+  Rendering students/show.json.jbuilder
+  Rendered students/show.json.jbuilder (0.7ms)
+Completed 200 OK in 95ms (Views: 15.6ms | ActiveRecord: 43.1ms)
+
+
+Started PUT "/student/2" for 127.0.0.1 at 2018-01-21 21:28:19 -0600
+Processing by StudentsController#update as JSON
+  Parameters: {"name"=>"Mario", "last_name"=>"Gomez", "is_active"=>"true", "age"=>"19", "company"=>1, "id"=>"2", "student"=>{"name"=>"Mario", "last_name"=>"Gomez", "is_active"=>"true", "age"=>"19"}}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT  `students`.* FROM `students` WHERE `students`.`id` = 2 LIMIT 1[0m
+  [1m[35m (41.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (139.8ms)[0m  [1m[33mUPDATE `students` SET `name` = 'Mario', `last_name` = 'Gomez', `updated_at` = '2018-01-22 03:28:19' WHERE `students`.`id` = 2[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering students/update.json.jbuilder
+  Rendered students/update.json.jbuilder (0.7ms)
+Completed 200 OK in 329ms (Views: 16.0ms | ActiveRecord: 198.7ms)
+
+
+Started GET "/students/" for 127.0.0.1 at 2018-01-21 21:28:24 -0600
+Processing by StudentsController#index as JSON
+  Rendering students/index.json.jbuilder
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT `students`.* FROM `students`[0m
+  Rendered students/index.json.jbuilder (2.2ms)
+Completed 200 OK in 17ms (Views: 14.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/students/" for 127.0.0.1 at 2018-01-21 21:29:18 -0600
+Processing by StudentsController#create as JSON
+  Parameters: {"name"=>"Sergio", "last_name"=>"Cervantez", "is_active"=>"true", "age"=>"8", "company"=>1, "student"=>{"name"=>"Sergio", "last_name"=>"Cervantez", "is_active"=>"true", "age"=>"8"}}
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (69.4ms)[0m  [1m[32mINSERT INTO `students` (`name`, `last_name`, `age`, `created_at`, `updated_at`, `school_id`) VALUES ('Sergio', 'true', 8, '2018-01-22 03:29:18', '2018-01-22 03:29:18', 1)[0m
+  [1m[35m (13.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering students/create.json.jbuilder
+  Rendered students/create.json.jbuilder (0.8ms)
+Completed 200 OK in 158ms (Views: 16.0ms | ActiveRecord: 83.3ms)
+
+
+Started GET "/students/" for 127.0.0.1 at 2018-01-21 21:29:25 -0600
+Processing by StudentsController#index as JSON
+  Rendering students/index.json.jbuilder
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT `students`.* FROM `students`[0m
+  Rendered students/index.json.jbuilder (2.6ms)
+Completed 200 OK in 29ms (Views: 25.5ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (0.6ms)[0m  [1m[35mSET  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT  `students`.* FROM `students` ORDER BY `students`.`id` DESC LIMIT 1[0m
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT  `students`.* FROM `students` ORDER BY `students`.`id` DESC LIMIT 1[0m
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT  `students`.* FROM `students` ORDER BY `students`.`id` DESC LIMIT 1[0m
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` ORDER BY `schools`.`id` DESC LIMIT 1[0m
+Started GET "/schools/" for 127.0.0.1 at 2018-01-21 21:43:06 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (3.1ms)
+Completed 200 OK in 58ms (Views: 19.0ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/school/8" for 127.0.0.1 at 2018-01-21 21:43:25 -0600
+Processing by SchoolsController#destroy as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 8 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (56.7ms)[0m  [1m[31mDELETE FROM `schools` WHERE `schools`.`id` = 8[0m
+  [1m[35m (25.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering schools/destroy.json.jbuilder
+  Rendered schools/destroy.json.jbuilder (0.5ms)
+Completed 200 OK in 127ms (Views: 15.3ms | ActiveRecord: 82.7ms)
+
+
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` ORDER BY `schools`.`id` DESC LIMIT 1[0m
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  [1m[36mSchool Load (0.7ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  [1m[36mStudent Load (68.0ms)[0m  [1m[34mSELECT  `students`.* FROM `students` WHERE `students`.`school_id` = 1 LIMIT 11[0m
+Started GET "/students/" for 127.0.0.1 at 2018-01-21 21:44:24 -0600
+Processing by StudentsController#index as JSON
+  Rendering students/index.json.jbuilder
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT `students`.* FROM `students`[0m
+  Rendered students/index.json.jbuilder (2.4ms)
+Completed 200 OK in 21ms (Views: 18.2ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mSchool Load (0.7ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 2 LIMIT 1[0m
+Started GET "/students/bycompany/1" for 127.0.0.1 at 2018-01-21 21:50:30 -0600
+Processing by StudentsController#filterBySchool as JSON
+  Parameters: {"company"=>"1"}
+  [1m[36mSchool Load (0.5ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  Rendering students/filterBySchool.json.jbuilder
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT `students`.* FROM `students` WHERE `students`.`school_id` = 1[0m
+  Rendered students/filterBySchool.json.jbuilder (16.8ms)
+Completed 200 OK in 239ms (Views: 31.5ms | ActiveRecord: 65.1ms)
+
+
+Started GET "/students/bycompany/2" for 127.0.0.1 at 2018-01-21 21:50:41 -0600
+Processing by StudentsController#filterBySchool as JSON
+  Parameters: {"company"=>"2"}
+  [1m[36mSchool Load (0.6ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 2 LIMIT 1[0m
+Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find School with 'id'=2):
+  
+app/controllers/students_controller.rb:48:in `filterBySchool'
+Started GET "/students/bycompany/1" for 127.0.0.1 at 2018-01-21 21:50:54 -0600
+Processing by StudentsController#filterBySchool as JSON
+  Parameters: {"company"=>"1"}
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  Rendering students/filterBySchool.json.jbuilder
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT `students`.* FROM `students` WHERE `students`.`school_id` = 1[0m
+  Rendered students/filterBySchool.json.jbuilder (3.6ms)
+Completed 200 OK in 25ms (Views: 20.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/students/bycompany/1" for 127.0.0.1 at 2018-01-21 21:53:45 -0600
+  
+SyntaxError (/proyectos/ruby/rails-test/blog-rails/app/controllers/students_controller.rb:53: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/controllers/students_controller.rb:53: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/students/bycompany/1" for 127.0.0.1 at 2018-01-21 21:54:10 -0600
+Processing by StudentsController#filterBySchool as JSON
+  Parameters: {"company"=>"1"}
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT  `students`.* FROM `students` WHERE `students`.`school_id` = 1 LIMIT 11[0m
+Completed 500 Internal Server Error in 110ms (ActiveRecord: 27.1ms)
+
+
+  
+  [1m[36mCACHE Student Load (0.0ms)[0m  [1m[34mSELECT  `students`.* FROM `students` WHERE `students`.`school_id` = 1 LIMIT 11[0m  [["school_id", 1], ["LIMIT", 11]]
+NoMethodError (undefined method `nil' for #<Student::ActiveRecord_Associations_CollectionProxy:0x007fbaee4d8310>
+Did you mean?  nil?):
+  
+app/controllers/students_controller.rb:50:in `filterBySchool'
+Started GET "/students/bycompany/1" for 127.0.0.1 at 2018-01-21 21:54:29 -0600
+Processing by StudentsController#filterBySchool as JSON
+  Parameters: {"company"=>"1"}
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 1 LIMIT 1[0m
+  Rendering students/filterBySchool.json.jbuilder
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT `students`.* FROM `students` WHERE `students`.`school_id` = 1[0m
+  Rendered students/filterBySchool.json.jbuilder (15.7ms)
+Completed 200 OK in 51ms (Views: 28.1ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/students/bycompany/2" for 127.0.0.1 at 2018-01-21 21:54:39 -0600
+Processing by StudentsController#filterBySchool as JSON
+  Parameters: {"company"=>"2"}
+  [1m[36mSchool Load (0.4ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 2 LIMIT 1[0m
+Completed 404 Not Found in 2ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find School with 'id'=2):
+  
+app/controllers/students_controller.rb:48:in `filterBySchool'
+Started GET "/schools/" for 127.0.0.1 at 2018-01-21 21:55:48 -0600
+Processing by SchoolsController#index as JSON
+  Rendering schools/index.json.jbuilder
+  [1m[36mSchool Load (0.5ms)[0m  [1m[34mSELECT `schools`.* FROM `schools`[0m
+  Rendered schools/index.json.jbuilder (3.2ms)
+Completed 200 OK in 35ms (Views: 17.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/students/bycompany/5" for 127.0.0.1 at 2018-01-21 21:55:59 -0600
+Processing by StudentsController#filterBySchool as JSON
+  Parameters: {"company"=>"5"}
+  [1m[36mSchool Load (0.5ms)[0m  [1m[34mSELECT  `schools`.* FROM `schools` WHERE `schools`.`id` = 5 LIMIT 1[0m
+  Rendering students/filterBySchool.json.jbuilder
+  [1m[36mStudent Load (44.3ms)[0m  [1m[34mSELECT `students`.* FROM `students` WHERE `students`.`school_id` = 5[0m
+  Rendered students/filterBySchool.json.jbuilder (46.5ms)
+Completed 200 OK in 66ms (Views: 16.3ms | ActiveRecord: 44.8ms)
+
+
